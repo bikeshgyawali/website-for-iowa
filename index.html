@@ -373,18 +373,21 @@
     .products-header { text-align: center; margin-bottom: 4rem; }
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5px;
-      background: var(--border);
+      background: transparent;
+    }
+    .product-card:last-child {
+      grid-column: 2 / 3;
     }
     .product-card {
-      background: var(--black-soft);
+      background: #2a2a2a50;
       padding: 2.5rem 2rem;
       text-align: center;
       transition: background 0.3s;
       cursor: default;
     }
-    .product-card:hover { background: var(--black-card); }
+    .product-card:hover { background: #333333; }
     .product-icon {
       font-size: 2rem; margin-bottom: 1.2rem;
       display: block;
@@ -846,6 +849,78 @@
       0%, 100% { opacity: 0.5; }
       50% { opacity: 1; }
     }
+    @keyframes floatDecoration {
+      0%, 100% { transform: translateY(0px); opacity: 0.6; }
+      50% { transform: translateY(-20px); opacity: 0.95; }
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 0.7; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 0.7; }
+    }
+    @keyframes rotateAccent {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* ===== HERO DECORATIVE GRAPHICS ===== */
+    .hero-decorator-top-left {
+      position: absolute;
+      top: 40px; left: 40px;
+      width: 80px; height: 80px;
+      border: 2px solid rgba(201,168,76,0.4);
+      border-right: none; border-bottom: none;
+      z-index: 1;
+      animation: slideInLeft 1.2s 0.4s ease both;
+    }
+    .hero-decorator-top-left::after {
+      content: '';
+      position: absolute;
+      top: 10px; left: 10px;
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    .hero-decorator-top-right {
+      position: absolute;
+      top: 40px; right: 40px;
+      width: 80px; height: 80px;
+      border: 2px solid rgba(201,168,76,0.4);
+      border-left: none; border-bottom: none;
+      z-index: 1;
+      animation: slideInRight 1.2s 0.4s ease both;
+    }
+    .hero-decorator-top-right::after {
+      content: '';
+      position: absolute;
+      top: 10px; right: 10px;
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite 0.3s;
+    }
+    
+    .hero-accent-line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5;
+      z-index: 1;
+    }
+    .hero-accent-line-left {
+      width: 200px; height: 2px;
+      left: 0; top: 35%;
+      animation: slideInLeft 1.5s 0.6s ease both;
+    }
+    .hero-accent-line-right {
+      width: 200px; height: 2px;
+      right: 0; top: 65%;
+      animation: slideInRight 1.5s 0.6s ease both;
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
@@ -866,6 +941,25 @@
       .atm-img-placeholder { aspect-ratio: 16/9; }
 
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .product-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card:last-child {
+        grid-column: 1;
+        max-width: 100%;
+      }
     }
 
     /* ===== MAP SECTION ===== */
@@ -959,6 +1053,12 @@
 
   <!-- HERO -->
   <section id="hero">
+    <!-- Decorative Graphics -->
+    <div class="hero-decorator-top-left"></div>
+    <div class="hero-decorator-top-right"></div>
+    <div class="hero-accent-line hero-accent-line-left"></div>
+    <div class="hero-accent-line hero-accent-line-right"></div>
+    
     <div class="hero-img-placeholder">
       <span class="img-label">Hero Image Placeholder</span>
     </div>
