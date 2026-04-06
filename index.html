@@ -868,6 +868,46 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
 
+    /* ===== MAP SECTION ===== */
+    #map-section {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: clamp(3rem, 6vw, 5rem) 5vw;
+    }
+    .map-container {
+      max-width: 1300px; margin: 0 auto;
+    }
+    .map-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .map-embed {
+      width: 100%;
+      height: 500px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 900px) {
+      .map-embed {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .map-embed {
+        height: 300px;
+      }
+    }
+
     @media (max-width: 600px) {
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:nth-child(1) { grid-column: span 2; }
@@ -1208,6 +1248,20 @@
         <span class="stats-big">∞</span>
         <p class="stats-label">Happy Customers</p>
         <p class="stats-sub">We've lost count</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section id="map-section">
+    <div class="map-container">
+      <div class="map-header">
+        <p class="section-label">Find Us On The Map</p>
+        <h2 class="section-title">Visit Tobacco Mart</h2>
+        <div class="gold-rule center"></div>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://maps.google.com/maps?q=6535+Douglas+Ave+Urbandale+IA+50322&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
