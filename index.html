@@ -17,8 +17,8 @@
       --black-soft: #111111;
       --black-mid: #1a1a1a;
       --black-card: #161616;
-      --off-white: #f0ead8;
-      --text-muted: #888;
+      --off-white: #f5f0e8;
+      --text-muted: #aaa;
       --border: rgba(201,168,76,0.25);
     }
 
@@ -185,7 +185,6 @@
     .hero-title span { color: var(--gold); }
     .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
       font-size: clamp(1.1rem, 2.5vw, 1.7rem);
       color: rgba(240,234,216,0.75);
       margin-bottom: 3rem;
@@ -324,12 +323,10 @@
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      z-index: -1;
     }
     .about-img-placeholder .img-tag {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(201,168,76,0.35);
-      border: 1px dashed rgba(201,168,76,0.2);
-      padding: 0.6rem 1.2rem;
+      display: none;
     }
     .about-img-accent {
       position: absolute;
@@ -428,10 +425,7 @@
       display: flex; align-items: center; justify-content: center;
     }
     .strip-img-placeholder .img-tag {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(201,168,76,0.35);
-      border: 1px dashed rgba(201,168,76,0.2);
-      padding: 0.6rem 1.2rem;
+      display: none;
     }
     .strip-text .section-title { font-size: clamp(1.5rem, 3vw, 2.3rem); }
     .strip-text p {
@@ -450,7 +444,6 @@
     .experience-inner p {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.15rem, 2.2vw, 1.5rem);
-      font-style: italic;
       line-height: 1.9;
       color: rgba(240,234,216,0.75);
       margin-bottom: 2rem;
@@ -563,7 +556,7 @@
     }
     .review-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; font-style: italic;
+      font-size: 1.05rem;
       line-height: 1.75; color: rgba(240,234,216,0.8);
       margin-bottom: 1.5rem;
     }
@@ -676,7 +669,6 @@
     }
     .footer-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
       font-size: 1rem;
       color: rgba(240,234,216,0.55);
       margin-bottom: 1.2rem;
@@ -717,7 +709,6 @@
       font-size: 0.65rem;
       color: rgba(136,136,136,0.35);
       letter-spacing: 0.05em;
-      font-style: italic;
     }
 
     /* ===== MANIFESTO ===== */
@@ -771,7 +762,6 @@
     .manifesto-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.4rem, 3.2vw, 2.2rem);
-      font-style: italic;
       font-weight: 300;
       line-height: 1.75;
       color: var(--off-white);
@@ -835,7 +825,6 @@
     }
     .stats-sub {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
       font-size: 0.85rem;
       color: rgba(201,168,76,0.4);
       margin-top: 0.3rem;
@@ -958,7 +947,7 @@
     <div id="about">
       <div class="about-img">
         <div class="about-img-placeholder">
-          <span class="img-tag">Store Image Placeholder</span>
+          <img src="images/1.JPG" alt="Our Story" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
         <div class="about-img-accent"></div>
       </div>
@@ -1039,7 +1028,7 @@
   <section id="feature-strip">
     <div class="strip-inner">
       <div class="strip-img-placeholder">
-        <span class="img-tag">Interior / Product Image</span>
+        <img src="images/2.JPG" alt="Curated for You" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="strip-text">
         <p class="section-label">Curated for You</p>
@@ -1155,12 +1144,12 @@
         <div class="gold-rule center"></div>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item"><div class="gallery-placeholder">Photo Placeholder</div></div>
-        <div class="gallery-item"><div class="gallery-placeholder">Photo</div></div>
-        <div class="gallery-item"><div class="gallery-placeholder">Photo</div></div>
-        <div class="gallery-item"><div class="gallery-placeholder">Photo</div></div>
-        <div class="gallery-item"><div class="gallery-placeholder">Photo</div></div>
-        <div class="gallery-item"><div class="gallery-placeholder">Photo</div></div>
+        <div class="gallery-item"><img src="images/2.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        <div class="gallery-item"><img src="images/IMG_0753.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        <div class="gallery-item"><img src="images/IMG_0756.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        <div class="gallery-item"><img src="images/IMG_0766.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        <div class="gallery-item"><img src="images/IMG_0768.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        <div class="gallery-item"><img src="images/IMG_0769.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
       </div>
     </div>
   </section>
@@ -1177,7 +1166,7 @@
         <a href="#about" class="btn-outline" style="margin-top:1.5rem; display:inline-block;">Learn More About Us</a>
       </div>
       <div class="atm-img-placeholder">
-        <span class="img-tag">Atmosphere / Storefront Image</span>
+        <img src="images/1.JPG" alt="Atmosphere / Storefront Image" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;">
       </div>
     </div>
   </section>
@@ -1188,9 +1177,9 @@
       <div class="manifesto-rule"><span>Our Belief</span></div>
       <p class="manifesto-text">
         We believe the finest things in life aren't found by accident —
-        they're <em>sought, curated, and savored.</em>
+        they're sought, curated, and savored.
         At Tobacco Mart, we've made it our purpose to bring that standard
-        to your neighborhood, because <em>every moment</em> deserves
+        to your neighborhood, because every moment deserves
         something worth remembering.
       </p>
       <p class="manifesto-sig">— The Tobacco Mart Family, Urbandale Iowa</p>
