@@ -452,33 +452,62 @@
       margin-bottom: 2rem;
     }
     .experience-pillars {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap: 1px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
       margin-top: 3.5rem;
-      background: var(--border);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .pillar {
-      flex: 1 1 200px;
-      background: var(--black-soft);
-      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.02) 100%);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 2.5rem 2rem;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .pillar:hover {
+      border-color: rgba(201,168,76,0.4);
+      background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.05) 100%);
+    }
+    .pillar:hover::before {
+      transform: scaleX(1);
     }
     .pillar-num {
-      font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
-      color: rgba(201,168,76,0.2);
-      display: block; margin-bottom: 0.5rem;
+      display: none;
     }
     .pillar-title {
       font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
       color: var(--gold);
-      margin-bottom: 0.6rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
     }
     .pillar-body {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.7;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: rgba(240,234,216,0.7);
+      line-height: 1.8;
+    }
+    
+    @media (max-width: 700px) {
+      .experience-pillars {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
     }
 
     /* ===== HOURS & LOCATION ===== */
@@ -530,11 +559,9 @@
       text-align: center;
     }
     .reviews-inner { max-width: 1300px; margin: 0 auto; }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3.5rem;
+    .review-single {
+      max-width: 700px;
+      margin: 3.5rem auto 0;
       text-align: left;
     }
     .review-card {
@@ -1246,32 +1273,13 @@
   <section id="reviews">
     <div class="reviews-inner">
       <p class="section-label">What People Are Saying</p>
-      <h2 class="section-title">Customer Reviews</h2>
+      <h2 class="section-title">Customer Spotlight</h2>
       <div class="gold-rule center"></div>
-      <div class="reviews-grid">
+      <div class="review-single">
         <div class="review-card">
           <p class="review-stars">★★★★★</p>
-          <p class="review-text">Best selection of cigars I've found in the metro. Staff actually knows what they're talking about and helps you find exactly what you're after.</p>
-          <p class="review-author">— Marcus T.</p>
-          <p class="review-source">Google Review</p>
-        </div>
-        <div class="review-card">
-          <p class="review-stars">★★★★★</p>
-          <p class="review-text">My go-to spot for wine and a good smoke. They always have something new on the shelf and the prices are fair for the quality you get.</p>
-          <p class="review-author">— Rachel P.</p>
-          <p class="review-source">Yelp Review</p>
-        </div>
-        <div class="review-card">
-          <p class="review-stars">★★★★★</p>
-          <p class="review-text">Clean store, great hours, friendly people. It doesn't feel like your average convenience stop — more like a proper shop that takes pride in what it carries.</p>
-          <p class="review-author">— D. Morrison</p>
-          <p class="review-source">Google Review</p>
-        </div>
-        <div class="review-card">
-          <p class="review-stars">★★★★☆</p>
-          <p class="review-text">Really glad this place is in the neighborhood. They've got the imports I usually have to drive across town for, right here in Urbandale.</p>
-          <p class="review-author">— Jim K.</p>
-          <p class="review-source">Yelp Review</p>
+          <p class="review-text">The guys and gals are very nice and helpful. Easy to get in and out quickly. Prices are good.</p>
+          <p class="review-author">— Michelle B.</p>
         </div>
       </div>
     </div>
