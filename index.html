@@ -1,1508 +1,2539 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tobacco Mart – Urbandale, IA</title>
-  <link rel="icon" type="image/x-icon" href="favi.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    /* ===== RESET & ROOT ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tobacco Mart – Urbandale, IA</title>
+    <link rel="icon" type="image/x-icon" href="favi.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== RESET & ROOT ===== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    :root {
-      --gold: #C9A84C;
-      --gold-light: #E8C96D;
-      --gold-pale: #f5e6b8;
-      --black: #0a0a0a;
-      --black-soft: #111111;
-      --black-mid: #1a1a1a;
-      --black-card: #161616;
-      --off-white: #f5f0e8;
-      --text-muted: #aaa;
-      --border: rgba(201,168,76,0.25);
-    }
+      :root {
+        --gold: #c9a84c;
+        --gold-light: #e8c96d;
+        --gold-pale: #f5e6b8;
+        --black: #0a0a0a;
+        --black-soft: #111111;
+        --black-mid: #1a1a1a;
+        --black-card: #161616;
+        --off-white: #f5f0e8;
+        --text-muted: #aaa;
+        --border: rgba(201, 168, 76, 0.25);
+      }
 
-    html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    body {
-      background: var(--black);
-      color: var(--off-white);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
+      body {
+        background: var(--black);
+        color: var(--off-white);
+        font-family: "Raleway", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
 
-    /* ===== SCROLLBAR ===== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+      /* ===== SCROLLBAR ===== */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 3px;
+      }
 
-    /* ===== NAV ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 4vw;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.92) 0%, transparent 100%);
-      transition: background 0.4s;
-    }
-    nav.scrolled {
-      background: rgba(8,8,8,0.97);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-    }
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex; gap: 2.5rem; list-style: none;
-    }
-    .nav-links a {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--off-white);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-hamburger {
-      display: none;
-      flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
-    }
-    .nav-hamburger span {
-      display: block; width: 24px; height: 1.5px;
-      background: var(--gold); transition: all 0.3s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    .mobile-menu {
-      display: none;
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8,8,8,0.98);
-      z-index: 99;
-      flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 2.5rem;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.2em;
-      color: var(--off-white);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .mobile-menu a:hover { color: var(--gold); }
-
-    /* ===== HERO ===== */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    .hero-img-placeholder {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, #0d0d0d 0%, #1a1208 40%, #0d0d0d 100%);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-img-placeholder::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 60px,
-          rgba(201,168,76,0.03) 60px,
-          rgba(201,168,76,0.03) 61px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 60px,
-          rgba(201,168,76,0.03) 60px,
-          rgba(201,168,76,0.03) 61px
+      /* ===== NAV ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2rem 4vw;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.92) 0%,
+          transparent 100%
         );
-    }
-    .hero-img-placeholder .img-label {
-      position: absolute;
-      top: 50%; left: 50%; transform: translate(-50%,-50%);
-      border: 1px dashed rgba(201,168,76,0.3);
-      padding: 1rem 2rem;
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(201,168,76,0.4);
-      pointer-events: none;
-      white-space: nowrap;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(0,0,0,0.3) 0%,
-        rgba(0,0,0,0.55) 50%,
-        rgba(0,0,0,0.85) 100%);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      text-align: center;
-      padding: 0 5vw;
-      animation: fadeUp 1.2s ease both;
-    }
-    .hero-eyebrow {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      animation: fadeUp 1s 0.2s ease both;
-    }
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.6rem, 8vw, 7rem);
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--off-white);
-      letter-spacing: 0.04em;
-      margin-bottom: 1.2rem;
-      animation: fadeUp 1s 0.4s ease both;
-    }
-    .hero-title span { color: var(--gold); }
-    .hero-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.7rem);
-      color: rgba(240,234,216,0.75);
-      margin-bottom: 3rem;
-      animation: fadeUp 1s 0.6s ease both;
-    }
-    .hero-cta {
-      display: inline-flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-    .btn-gold {
-      display: inline-block;
-      padding: 0.85rem 2.4rem;
-      background: var(--gold);
-      color: var(--black);
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline {
-      display: inline-block;
-      padding: 0.85rem 2.4rem;
-      border: 1px solid rgba(201,168,76,0.6);
-      color: var(--gold);
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.3s, background 0.3s, transform 0.2s;
-    }
-    .btn-outline:hover {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.08);
-      transform: translateY(-2px);
-    }
-    .hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      color: rgba(201,168,76,0.5);
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      animation: pulse 2.5s infinite;
-    }
-    .hero-scroll::after {
-      content: '';
-      display: block; width: 1px; height: 45px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-    }
+        transition: background 0.4s;
+      }
+      nav.scrolled {
+        background: rgba(8, 8, 8, 0.97);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+      }
+      .nav-logo {
+        font-family: "Cinzel", serif;
+        font-size: clamp(1.75rem, 4.375vw, 2.275rem);
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.15em;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
 
-    /* ===== DOORDASH BANNER ===== */
-    #doordash {
-      background: linear-gradient(90deg, #111 0%, #1c1408 50%, #111 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 4vw;
-      display: flex; align-items: center; justify-content: center;
-      gap: 1.5rem; flex-wrap: wrap;
-    }
-    .doordash-text {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: var(--off-white);
-    }
-    .doordash-text span { color: var(--gold); font-weight: 600; }
-    .doordash-badge {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: #FF3008;
-      color: #fff;
-      padding: 0.5rem 1.4rem;
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: opacity 0.3s, transform 0.2s;
-      border-radius: 2px;
-    }
-    .doordash-badge:hover { opacity: 0.9; transform: translateY(-1px); }
-    .doordash-badge svg { width: 16px; height: 16px; fill: #fff; }
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 1.5px;
+        background: var(--gold);
+        transition: all 0.3s;
+      }
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
 
-    /* ===== SECTION COMMON ===== */
-    section { padding: clamp(4rem, 8vw, 7rem) 5vw; }
-    .section-label {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 600;
-      color: var(--off-white);
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-    .gold-rule {
-      width: 60px; height: 1px;
-      background: var(--gold);
-      margin-bottom: 2rem;
-    }
-    .gold-rule.center { margin-left: auto; margin-right: auto; }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(8, 8, 8, 0.98);
+        z-index: 99;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-family: "Cinzel", serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.2em;
+        color: var(--off-white);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .mobile-menu a:hover {
+        color: var(--gold);
+      }
 
-    /* ===== ABOUT ===== */
-    #about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 6vw, 6rem);
-      align-items: center;
-      max-width: 1400px; margin: 0 auto;
-    }
-    .about-img {
-      position: relative;
-    }
-    .about-img-placeholder {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-img-placeholder::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
-      z-index: -1;
-    }
-    .about-img-placeholder .img-tag {
-      display: none;
-    }
-    .about-img-accent {
-      position: absolute;
-      bottom: -1.5rem; right: -1.5rem;
-      width: 55%;
-      aspect-ratio: 1;
-      border: 1px solid var(--gold);
-      z-index: -1;
-    }
-    .about-text p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
-      line-height: 1.9;
-      color: rgba(240,234,216,0.8);
-      margin-bottom: 1.5rem;
-    }
-    .about-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1rem; margin-top: 2.5rem;
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
-    }
-    .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      display: block;
-    }
-    .stat-label {
-      font-size: 0.65rem; letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: 0.3rem;
-    }
+      /* ===== HERO ===== */
+      #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .hero-img-placeholder {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          #0d0d0d 0%,
+          #1a1208 40%,
+          #0d0d0d 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-img-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 60px,
+            rgba(201, 168, 76, 0.03) 60px,
+            rgba(201, 168, 76, 0.03) 61px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 60px,
+            rgba(201, 168, 76, 0.03) 60px,
+            rgba(201, 168, 76, 0.03) 61px
+          );
+      }
+      .hero-img-placeholder .img-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px dashed rgba(201, 168, 76, 0.3);
+        padding: 1rem 2rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(201, 168, 76, 0.4);
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.3) 0%,
+          rgba(0, 0, 0, 0.55) 50%,
+          rgba(0, 0, 0, 0.85) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 5vw;
+        animation: fadeUp 1.2s ease both;
+      }
+      .hero-eyebrow {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.5rem;
+        animation: fadeUp 1s 0.2s ease both;
+      }
+      .hero-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2.6rem, 8vw, 7rem);
+        font-weight: 700;
+        line-height: 1.05;
+        color: var(--off-white);
+        letter-spacing: 0.04em;
+        margin-bottom: 1.2rem;
+        animation: fadeUp 1s 0.4s ease both;
+      }
+      .hero-title span {
+        color: var(--gold);
+      }
+      .hero-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+        color: rgba(240, 234, 216, 0.75);
+        margin-bottom: 3rem;
+        animation: fadeUp 1s 0.6s ease both;
+      }
+      .hero-cta {
+        display: inline-flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeUp 1s 0.8s ease both;
+      }
+      .btn-gold {
+        display: inline-block;
+        padding: 0.85rem 2.4rem;
+        background: var(--gold);
+        color: var(--black);
+        font-family: "Raleway", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background 0.3s,
+          transform 0.2s;
+      }
+      .btn-gold:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        display: inline-block;
+        padding: 0.85rem 2.4rem;
+        border: 1px solid rgba(201, 168, 76, 0.6);
+        color: var(--gold);
+        font-family: "Raleway", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          border-color 0.3s,
+          background 0.3s,
+          transform 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        background: rgba(201, 168, 76, 0.08);
+        transform: translateY(-2px);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(201, 168, 76, 0.5);
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        animation: pulse 2.5s infinite;
+      }
+      .hero-scroll::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 45px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+      }
 
-    /* ===== PRODUCTS ===== */
-    #products {
-      background: var(--black-soft);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .products-inner { max-width: 1400px; margin: 0 auto; }
-    .products-header { text-align: center; margin-bottom: 4rem; }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: transparent;
-    }
-    .product-card:last-child {
-      grid-column: 2 / 3;
-    }
-    .product-card {
-      background: #2a2a2a50;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: background 0.3s;
-      cursor: default;
-    }
-    .product-card:hover { background: #333333; }
-    .product-icon {
-      font-size: 2rem; margin-bottom: 1.2rem;
-      display: block;
-      filter: grayscale(1) sepia(1) saturate(2) hue-rotate(5deg);
-    }
-    .product-name {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: var(--off-white);
-      margin-bottom: 0.5rem;
-    }
-    .product-desc {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      letter-spacing: 0.02em;
-    }
-
-    /* ===== FEATURE STRIP ===== */
-    #feature-strip {
-      padding: clamp(3rem, 6vw, 5rem) 5vw;
-      background: var(--black-mid);
-      border-bottom: 1px solid var(--border);
-    }
-    .strip-inner {
-      max-width: 1400px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: center;
-    }
-    .strip-img-placeholder {
-      width: 100%;
-      aspect-ratio: 16/10;
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .strip-img-placeholder .img-tag {
-      display: none;
-    }
-    .strip-text .section-title { font-size: clamp(1.5rem, 3vw, 2.3rem); }
-    .strip-text p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 1.6vw, 1.15rem);
-      color: rgba(240,234,216,0.7);
-      line-height: 1.9;
-    }
-
-    /* ===== EXPERIENCE SECTION (vague #1) ===== */
-    #experience {
-      text-align: center;
-      background: var(--black);
-    }
-    .experience-inner { max-width: 900px; margin: 0 auto; }
-    .experience-inner p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
-      line-height: 1.9;
-      color: rgba(240,234,216,0.75);
-      margin-bottom: 2rem;
-    }
-    .experience-pillars {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin-top: 3.5rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .pillar {
-      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.02) 100%);
-      border: 1px solid rgba(201,168,76,0.2);
-      padding: 2.5rem 2rem;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .pillar::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-    .pillar:hover {
-      border-color: rgba(201,168,76,0.4);
-      background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.05) 100%);
-    }
-    .pillar:hover::before {
-      transform: scaleX(1);
-    }
-    .pillar-num {
-      display: none;
-    }
-    .pillar-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-    .pillar-body {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      color: rgba(240,234,216,0.7);
-      line-height: 1.8;
-    }
-    
-    @media (max-width: 700px) {
-      .experience-pillars {
-        grid-template-columns: 1fr;
+      /* ===== DOORDASH BANNER ===== */
+      #doordash {
+        background: linear-gradient(90deg, #111 0%, #1c1408 50%, #111 100%);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 4vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         gap: 1.5rem;
+        flex-wrap: wrap;
       }
-    }
-
-    /* ===== HOURS & LOCATION ===== */
-    #visit {
-      background: var(--black-soft);
-      border-top: 1px solid var(--border);
-    }
-    .visit-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 6vw, 5rem);
-      align-items: start;
-    }
-    .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
-    .hours-table tr { border-bottom: 1px solid rgba(201,168,76,0.1); }
-    .hours-table td {
-      padding: 0.75rem 0;
-      font-size: 0.82rem;
-      letter-spacing: 0.05em;
-      color: rgba(240,234,216,0.75);
-    }
-    .hours-table td:first-child {
-      font-weight: 500; color: var(--gold);
-      text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.15em;
-    }
-    .hours-table td:last-child { text-align: right; }
-    .location-address {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      line-height: 1.6;
-      color: var(--off-white);
-      margin: 1.5rem 0;
-    }
-    .location-links { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 2rem; }
-    .location-link {
-      display: inline-flex; align-items: center; gap: 0.7rem;
-      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--gold); text-decoration: none;
-      transition: opacity 0.3s;
-    }
-    .location-link:hover { opacity: 0.7; }
-    .location-link::before {
-      content: '→'; font-size: 0.85rem;
-    }
-
-    /* ===== REVIEWS ===== */
-    #reviews {
-      background: var(--black);
-      text-align: center;
-    }
-    .reviews-inner { max-width: 1300px; margin: 0 auto; }
-    .review-single {
-      max-width: 700px;
-      margin: 3.5rem auto 0;
-      text-align: left;
-    }
-    .review-card {
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      position: relative;
-      transition: border-color 0.3s;
-    }
-    .review-card:hover { border-color: rgba(201,168,76,0.5); }
-    .review-card::before {
-      content: '\201C';
-      position: absolute; top: 1rem; right: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      color: rgba(201,168,76,0.08);
-      line-height: 1;
-    }
-    .review-stars {
-      color: var(--gold); font-size: 0.8rem;
-      letter-spacing: 0.15em; margin-bottom: 1rem;
-    }
-    .review-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      line-height: 1.75; color: rgba(240,234,216,0.8);
-      margin-bottom: 1.5rem;
-    }
-    .review-author {
-      font-size: 0.7rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--text-muted);
-    }
-    .review-source {
-      font-size: 0.65rem; letter-spacing: 0.1em;
-      color: rgba(201,168,76,0.5); margin-top: 0.25rem;
-    }
-
-    /* ===== GALLERY ===== */
-    #gallery {
-      background: var(--black-mid);
-      border-top: 1px solid var(--border);
-    }
-    .gallery-inner { max-width: 1400px; margin: 0 auto; }
-    .gallery-header { text-align: center; margin-bottom: 3rem; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto;
-      gap: 6px;
-    }
-    .gallery-item {
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-      transition: border-color 0.3s;
-      cursor: pointer;
-    }
-    .gallery-item:hover { border-color: rgba(201,168,76,0.5); }
-    .gallery-item:nth-child(1) { grid-column: span 6; aspect-ratio: 16/10; }
-    .gallery-item:nth-child(2) { grid-column: span 3; aspect-ratio: 4/5; }
-    .gallery-item:nth-child(3) { grid-column: span 3; aspect-ratio: 4/5; }
-    .gallery-item:nth-child(4) { grid-column: span 4; aspect-ratio: 4/3; }
-    .gallery-item:nth-child(5) { grid-column: span 4; aspect-ratio: 4/3; }
-    .gallery-item:nth-child(6) { grid-column: span 4; aspect-ratio: 4/3; }
-    .gallery-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(201,168,76,0.3);
-      border: 1px dashed rgba(201,168,76,0.15);
-      margin: 12px;
-    }
-
-    /* ===== ATMOSPHERE (vague #2) ===== */
-    #atmosphere {
-      background: var(--black-soft);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .atmosphere-inner {
-      max-width: 1400px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 6vw, 6rem);
-      align-items: center;
-    }
-    .atm-text p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 1.8vw, 1.2rem);
-      line-height: 1.9; color: rgba(240,234,216,0.75);
-      margin-bottom: 1.3rem;
-    }
-    .atm-img-placeholder {
-      width: 100%; aspect-ratio: 4/3;
-      background: var(--black-card);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .atm-img-placeholder::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(315deg, rgba(201,168,76,0.05) 0%, transparent 60%);
-    }
-    .atm-img-placeholder .img-tag {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(201,168,76,0.35);
-      border: 1px dashed rgba(201,168,76,0.2);
-      padding: 0.6rem 1.2rem;
-      position: relative; z-index: 1;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--black);
-      border-top: 1px solid var(--border);
-      padding: clamp(2.5rem, 5vw, 4rem) 5vw 1.5rem;
-    }
-    .footer-grid {
-      max-width: 1300px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: clamp(2rem, 5vw, 4rem);
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .footer-brand-name {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      display: block;
-      margin-bottom: 1rem;
-    }
-    .footer-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: rgba(240,234,216,0.55);
-      margin-bottom: 1.2rem;
-      line-height: 1.6;
-    }
-    .footer-address {
-      font-size: 0.78rem; line-height: 1.8;
-      color: var(--text-muted);
-    }
-    .footer-col-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-links a {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s;
-      letter-spacing: 0.05em;
-    }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-bottom {
-      max-width: 1300px; margin: 1.5rem auto 0;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 0.8rem;
-    }
-    .footer-copy {
-      font-size: 0.68rem;
-      color: rgba(136,136,136,0.5);
-      letter-spacing: 0.08em;
-    }
-    .footer-disc {
-      font-size: 0.65rem;
-      color: rgba(136,136,136,0.35);
-      letter-spacing: 0.05em;
-    }
-
-    /* ===== MANIFESTO ===== */
-    #manifesto {
-      padding: clamp(5rem, 10vw, 9rem) 5vw;
-      background: var(--black-mid);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-    #manifesto::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #manifesto::after {
-      content: '"';
-      position: absolute;
-      top: -2rem; left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(12rem, 25vw, 22rem);
-      color: rgba(201,168,76,0.04);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-    .manifesto-inner {
-      position: relative; z-index: 1;
-      max-width: 860px; margin: 0 auto;
-    }
-    .manifesto-rule {
-      display: flex; align-items: center; gap: 1.5rem;
-      justify-content: center; margin-bottom: 3rem;
-    }
-    .manifesto-rule::before,
-    .manifesto-rule::after {
-      content: ''; flex: 1; max-width: 80px;
-      height: 1px; background: var(--gold);
-      opacity: 0.5;
-    }
-    .manifesto-rule span {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem; letter-spacing: 0.45em;
-      text-transform: uppercase; color: var(--gold);
-    }
-    .manifesto-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.4rem, 3.2vw, 2.2rem);
-      font-weight: 300;
-      line-height: 1.75;
-      color: var(--off-white);
-      letter-spacing: 0.01em;
-    }
-    .manifesto-text em {
-      font-style: normal;
-      color: var(--gold);
-    }
-    .manifesto-sig {
-      margin-top: 2.5rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: rgba(201,168,76,0.5);
-    }
-
-    /* ===== STATS BAR ===== */
-    #stats-bar {
-      background: var(--black);
-      border-bottom: 1px solid var(--border);
-      padding: clamp(3rem, 6vw, 5rem) 5vw;
-    }
-    .stats-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-    }
-    .stats-cell {
-      background: var(--black);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      position: relative;
-      transition: background 0.3s;
-    }
-    .stats-cell:hover { background: var(--black-card); }
-    .stats-big {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      display: block;
-      margin-bottom: 0.6rem;
-    }
-    .stats-big sup {
-      font-size: 0.45em;
-      vertical-align: super;
-      color: var(--gold-light);
-    }
-    .stats-label {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .stats-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      color: rgba(201,168,76,0.4);
-      margin-top: 0.3rem;
-    }
-
-    @media (max-width: 700px) {
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 400px) {
-      .stats-inner { grid-template-columns: 1fr; }
-    }
-
-    /* ===== KEYFRAMES ===== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-    @keyframes floatDecoration {
-      0%, 100% { transform: translateY(0px); opacity: 0.6; }
-      50% { transform: translateY(-20px); opacity: 0.95; }
-    }
-    @keyframes slideInLeft {
-      from { transform: translateX(-100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 0.7; }
-    }
-    @keyframes slideInRight {
-      from { transform: translateX(100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 0.7; }
-    }
-    @keyframes rotateAccent {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    /* ===== HERO DECORATIVE GRAPHICS ===== */
-    .hero-decorator-top-left {
-      position: absolute;
-      top: 40px; left: 40px;
-      width: 80px; height: 80px;
-      border: 2px solid rgba(201,168,76,0.4);
-      border-right: none; border-bottom: none;
-      z-index: 1;
-      animation: slideInLeft 1.2s 0.4s ease both;
-    }
-    .hero-decorator-top-left::after {
-      content: '';
-      position: absolute;
-      top: 10px; left: 10px;
-      width: 4px; height: 4px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    
-    .hero-decorator-top-right {
-      position: absolute;
-      top: 40px; right: 40px;
-      width: 80px; height: 80px;
-      border: 2px solid rgba(201,168,76,0.4);
-      border-left: none; border-bottom: none;
-      z-index: 1;
-      animation: slideInRight 1.2s 0.4s ease both;
-    }
-    .hero-decorator-top-right::after {
-      content: '';
-      position: absolute;
-      top: 10px; right: 10px;
-      width: 4px; height: 4px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: pulse 2s infinite 0.3s;
-    }
-    
-    .hero-accent-line {
-      position: absolute;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.5;
-      z-index: 1;
-    }
-    .hero-accent-line-left {
-      width: 200px; height: 2px;
-      left: 0; top: 35%;
-      animation: slideInLeft 1.5s 0.6s ease both;
-    }
-    .hero-accent-line-right {
-      width: 200px; height: 2px;
-      right: 0; top: 65%;
-      animation: slideInRight 1.5s 0.6s ease both;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-
-      #about { grid-template-columns: 1fr; }
-      .about-img-accent { display: none; }
-      .about-img-placeholder { aspect-ratio: 3/2; }
-      .about-stats { grid-template-columns: repeat(3, 1fr); }
-
-      .strip-inner { grid-template-columns: 1fr; }
-      .strip-img-placeholder { aspect-ratio: 16/9; }
-
-      .visit-inner { grid-template-columns: 1fr; }
-
-      .atmosphere-inner { grid-template-columns: 1fr; }
-      .atm-img-placeholder { aspect-ratio: 16/9; }
-
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .doordash-text {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: var(--off-white);
       }
-      .product-card:last-child {
-        grid-column: 1 / -1;
-        max-width: 50%;
+      .doordash-text span {
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .doordash-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #ff3008;
+        color: #fff;
+        padding: 0.5rem 1.4rem;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          opacity 0.3s,
+          transform 0.2s;
+        border-radius: 2px;
+      }
+      .doordash-badge:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      .doordash-badge svg {
+        width: 16px;
+        height: 16px;
+        fill: #fff;
+      }
+
+      /* ===== SECTION COMMON ===== */
+      section {
+        padding: clamp(4rem, 8vw, 7rem) 5vw;
+      }
+      .section-label {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .section-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        font-weight: 600;
+        color: var(--off-white);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+      .gold-rule {
+        width: 60px;
+        height: 1px;
+        background: var(--gold);
+        margin-bottom: 2rem;
+      }
+      .gold-rule.center {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ===== ABOUT ===== */
+      #about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 6vw, 6rem);
+        align-items: center;
+        max-width: 1400px;
         margin: 0 auto;
       }
-    }
+      .about-img {
+        position: relative;
+      }
+      .about-img-placeholder {
+        width: 100%;
+        aspect-ratio: 4/5;
+        background: var(--black-card);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .about-img-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.04) 0%,
+          transparent 60%
+        );
+        z-index: -1;
+      }
+      .about-img-placeholder .img-tag {
+        display: none;
+      }
+      .about-img-accent {
+        position: absolute;
+        bottom: -1.5rem;
+        right: -1.5rem;
+        width: 55%;
+        aspect-ratio: 1;
+        border: 1px solid var(--gold);
+        z-index: -1;
+      }
+      .about-text p {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
+        line-height: 1.9;
+        color: rgba(240, 234, 216, 0.8);
+        margin-bottom: 1.5rem;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2.5rem;
+        border-top: 1px solid var(--border);
+        padding-top: 2rem;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        color: var(--gold);
+        display: block;
+      }
+      .stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 0.3rem;
+      }
 
-    @media (max-width: 600px) {
+      /* ===== PRODUCTS ===== */
+      #products {
+        background: var(--black-soft);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .products-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .products-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
       .products-grid {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5px;
+        background: transparent;
       }
       .product-card:last-child {
-        grid-column: 1;
-        max-width: 100%;
+        grid-column: 2 / 3;
       }
-    }
-
-    /* ===== MAP SECTION ===== */
-    #map-section {
-      background: var(--black);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: clamp(3rem, 6vw, 5rem) 5vw;
-    }
-    .map-container {
-      max-width: 1300px; margin: 0 auto;
-    }
-    .map-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .map-embed {
-      width: 100%;
-      height: 500px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-    .map-embed iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    @media (max-width: 900px) {
-      .map-embed {
-        height: 400px;
+      .product-card {
+        background: #2a2a2a50;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        transition: background 0.3s;
+        cursor: default;
       }
-    }
-
-    @media (max-width: 600px) {
-      .map-embed {
-        height: 300px;
+      .product-card:hover {
+        background: #333333;
       }
-    }
+      .product-icon {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+        display: block;
+        filter: grayscale(1) sepia(1) saturate(2) hue-rotate(5deg);
+      }
+      .product-name {
+        font-family: "Cinzel", serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        color: var(--off-white);
+        margin-bottom: 0.5rem;
+      }
+      .product-desc {
+        font-size: 1.15rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        letter-spacing: 0.02em;
+      }
 
-    @media (max-width: 600px) {
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(2) { grid-column: span 1; }
-      .gallery-item:nth-child(3) { grid-column: span 1; }
-      .gallery-item:nth-child(4) { grid-column: span 2; }
-      .gallery-item:nth-child(5) { grid-column: span 1; }
-      .gallery-item:nth-child(6) { grid-column: span 1; }
+      /* ===== FEATURE STRIP ===== */
+      #feature-strip {
+        padding: clamp(3rem, 6vw, 5rem) 5vw;
+        background: var(--black-mid);
+        border-bottom: 1px solid var(--border);
+      }
+      .strip-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 5vw, 5rem);
+        align-items: center;
+      }
+      .strip-img-placeholder {
+        width: 100%;
+        aspect-ratio: 16/10;
+        background: var(--black-card);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .strip-img-placeholder .img-tag {
+        display: none;
+      }
+      .strip-text .section-title {
+        font-size: clamp(1.5rem, 3vw, 2.3rem);
+      }
+      .strip-text p {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+        color: rgba(240, 234, 216, 0.7);
+        line-height: 1.9;
+      }
 
-      .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-      .stat-num { font-size: 1.4rem; }
+      /* ===== EXPERIENCE SECTION (vague #1) ===== */
+      #experience {
+        text-align: center;
+        background: var(--black);
+      }
+      .experience-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .experience-inner p {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+        line-height: 1.9;
+        color: rgba(240, 234, 216, 0.75);
+        margin-bottom: 2rem;
+      }
+      .experience-pillars {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 3.5rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .pillar {
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.08) 0%,
+          rgba(201, 168, 76, 0.02) 100%
+        );
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        padding: 2.5rem 2rem;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .pillar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      .pillar:hover {
+        border-color: rgba(201, 168, 76, 0.4);
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.12) 0%,
+          rgba(201, 168, 76, 0.05) 100%
+        );
+      }
+      .pillar:hover::before {
+        transform: scaleX(1);
+      }
+      .pillar-num {
+        display: none;
+      }
+      .pillar-title {
+        font-family: "Cinzel", serif;
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        color: var(--gold);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+      }
+      .pillar-body {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        color: rgba(240, 234, 216, 0.7);
+        line-height: 1.8;
+      }
 
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-
-      .experience-pillars { flex-direction: column; }
-
-      #doordash { flex-direction: column; text-align: center; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- NAV -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">TOBACCO MART</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#visit">Visit</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#map-section">Map</a></li>
-    </ul>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#about" onclick="toggleMenu()">About</a>
-    <a href="#products" onclick="toggleMenu()">Products</a>
-    <a href="#visit" onclick="toggleMenu()">Visit</a>
-    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
-    <a href="#gallery" onclick="toggleMenu()">Gallery</a>
-    <a href="#map-section" onclick="toggleMenu()">Map</a>
-  </div>
-
-  <!-- HERO -->
-  <section id="hero">
-    <!-- Decorative Graphics -->
-    <div class="hero-decorator-top-left"></div>
-    <div class="hero-decorator-top-right"></div>
-    <div class="hero-accent-line hero-accent-line-left"></div>
-    <div class="hero-accent-line hero-accent-line-right"></div>
-    
-    <div class="hero-img-placeholder">
-      <img src="images/3.JPG" alt="Tobacco Mart Hero" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Est. Urbandale, Iowa</p>
-      <h1 class="hero-title">Where Smoke<br>Meets <span>Spirit</span></h1>
-      <p class="hero-tagline">Taste the world: Spirits, Wines &amp; Imported Cigars</p>
-      <div class="hero-cta">
-        <a href="#products" class="btn-gold">Explore Selection</a>
-        <a href="#visit" class="btn-outline">Find Us</a>
-      </div>
-    </div>
-    <div class="hero-scroll">Scroll</div>
-  </section>
-
-  <!-- DOORDASH BANNER -->
-
-  <!-- ABOUT -->
-  <section>
-    <div id="about">
-      <div class="about-img">
-        <div class="about-img-placeholder">
-          <img src="images/1.JPG" alt="Our Story" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <div class="about-img-accent"></div>
-      </div>
-      <div class="about-text">
-        <p class="section-label">Our Story</p>
-        <h2 class="section-title">A Family Tradition of Quality</h2>
-        <div class="gold-rule"></div>
-        <p>At Tobacco Mart, we believe every moment deserves a little elevation: bringing together premium tobacco, fine spirits, curated wines, and imported cigars in one modern destination built for those who appreciate quality and experience.</p>
-        <p>We carefully select everything on our shelves so you can enjoy the best without the guesswork, whether you're unwinding, celebrating, or discovering something new. Every sip and every puff is meant to elevate your everyday.</p>
-        <div class="about-stats">
-          <div class="stat-item">
-            <span class="stat-num">7</span>
-            <span class="stat-label">Days a Week</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">7<small style="font-size:0.7em">am</small></span>
-            <span class="stat-label">Early Open</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">10<small style="font-size:0.7em">pm</small></span>
-            <span class="stat-label">Late Close</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products">
-    <div class="products-inner">
-      <div class="products-header">
-        <p class="section-label">What We Carry</p>
-        <h2 class="section-title">Our Selection</h2>
-        <div class="gold-rule center"></div>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(240,234,216,0.65); max-width:500px; margin:0 auto;">Curated with care, from smooth spirits to world-class cigars.</p>
-      </div>
-      <div class="products-grid">
-        <div class="product-card">
-          <span class="product-icon">🚬</span>
-          <p class="product-name">Cigarettes</p>
-          <p class="product-desc">A wide variety of domestic and imported brands.</p>
-        </div>
-        <div class="product-card">
-          <span class="product-icon">💨</span>
-          <p class="product-name">Vapes</p>
-          <p class="product-desc">Devices, pods, and accessories for every preference.</p>
-        </div>
-        <div class="product-card">
-          <span class="product-icon">🌿</span>
-          <p class="product-name">Tobacco</p>
-          <p class="product-desc">Premium loose tobacco, wraps, and pipe blends.</p>
-        </div>
-        <div class="product-card">
-          <span class="product-icon">🥃</span>
-          <p class="product-name">Premium Cigars</p>
-          <p class="product-desc">Imported selections hand-picked for the discerning palate.</p>
-        </div>
-        <div class="product-card">
-          <span class="product-icon">🍺</span>
-          <p class="product-name">Beer</p>
-          <p class="product-desc">Craft, domestic, and imported. Cold and ready.</p>
-        </div>
-        <div class="product-card">
-          <span class="product-icon">🍷</span>
-          <p class="product-name">Wine</p>
-          <p class="product-desc">A thoughtful selection for every occasion.</p>
-        </div>
-        <div class="product-card">
-          <span class="product-icon">🥃</span>
-          <p class="product-name">Liquor</p>
-          <p class="product-desc">Fine spirits, whiskeys, and more, expertly stocked.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURE STRIP (image + text) -->
-  <section id="feature-strip">
-    <div class="strip-inner">
-      <div class="strip-img-placeholder">
-        <img src="images/2.JPG" alt="Curated for You" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-      <div class="strip-text">
-        <p class="section-label">Curated for You</p>
-        <h2 class="section-title">More Than a Convenience Store</h2>
-        <div class="gold-rule"></div>
-        <p>We've redefined what a neighborhood shop can be: a space where quality meets convenience, and every visit feels intentional. Stop in for a quick grab or take your time exploring what's new on our shelves.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE (vague section #1) -->
-  <section id="experience">
-    <div class="experience-inner">
-      <p class="section-label" style="text-align:center;">The Tobacco Mart Way</p>
-      <h2 class="section-title" style="text-align:center;">Elevate Every Moment</h2>
-      <div class="gold-rule center"></div>
-      <p>There's a reason our regulars keep coming back: it's not just what we carry, it's how we carry it. Quality, selection, and a welcoming atmosphere that makes every visit worth the trip.</p>
-      <div class="experience-pillars">
-        <div class="pillar">
-          <span class="pillar-num">01</span>
-          <p class="pillar-title">Curated Selection</p>
-          <p class="pillar-body">Every product is chosen with purpose: no filler, no compromise.</p>
-        </div>
-        <div class="pillar">
-          <span class="pillar-num">02</span>
-          <p class="pillar-title">Local Roots</p>
-          <p class="pillar-body">Family-owned and Urbandale proud, serving our community with care.</p>
-        </div>
-        <div class="pillar">
-          <span class="pillar-num">03</span>
-          <p class="pillar-title">Open Daily</p>
-          <p class="pillar-body">Early mornings to late evenings: we're here when you need us.</p>
-        </div>
-        <div class="pillar">
-          <span class="pillar-num">04</span>
-          <p class="pillar-title">Real Knowledge</p>
-          <p class="pillar-body">Ask us anything: we know our shelves inside and out.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOURS & VISIT -->
-  <section id="visit">
-    <div class="visit-inner">
-      <div>
-        <p class="section-label">Come See Us</p>
-        <h2 class="section-title">Hours &amp; Location</h2>
-        <div class="gold-rule"></div>
-        <table class="hours-table">
-          <tr><td>Mon – Fri</td><td>7:00 AM – 10:00 PM</td></tr>
-          <tr><td>Saturday</td><td>8:00 AM – 10:00 PM</td></tr>
-          <tr><td>Sunday</td><td>8:00 AM – 10:00 PM</td></tr>
-        </table>
-      </div>
-      <div>
-        <p class="section-label">Find Us</p>
-        <h2 class="section-title">Urbandale, Iowa</h2>
-        <div class="gold-rule"></div>
-        <p class="location-address">
-          6535 Douglas Ave<br>
-          Urbandale, IA 50322
-        </p>
-        <div class="location-links">
-          <a href="https://www.yelp.com/map/tobacco-hut-urbandale" target="_blank" class="location-link">View on Yelp</a>
-          <a href="https://maps.google.com/?q=6535+Douglas+Ave+Urbandale+IA+50322" target="_blank" class="location-link">Open in Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section id="reviews">
-    <div class="reviews-inner">
-      <p class="section-label">What People Are Saying</p>
-      <h2 class="section-title">Customer Spotlight</h2>
-      <div class="gold-rule center"></div>
-      <div class="review-single">
-        <div class="review-card">
-          <p class="review-stars">★★★★★</p>
-          <p class="review-text">The guys and gals are very nice and helpful. Easy to get in and out quickly. Prices are good.</p>
-          <p class="review-author">Michelle B.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="gallery-inner">
-      <div class="gallery-header">
-        <p class="section-label">Take a Look Inside</p>
-        <h2 class="section-title">Gallery</h2>
-        <div class="gold-rule center"></div>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="images/3.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="gallery-item"><img src="images/4.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="gallery-item"><img src="images/5.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="gallery-item"><img src="images/6.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="gallery-item"><img src="images/7.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="gallery-item"><img src="images/8.JPG" alt="Tobacco Mart" style="width: 100%; height: 100%; object-fit: cover;"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ATMOSPHERE (vague section #2) -->
-  <section id="atmosphere">
-    <div class="atmosphere-inner">
-      <div class="atm-text">
-        <p class="section-label">The Feeling</p>
-        <h2 class="section-title">An Atmosphere Worth Returning To</h2>
-        <div class="gold-rule"></div>
-        <p>From the moment you walk in, Tobacco Mart feels different. It's a place built around appreciation: for craftsmanship, for flavor, for taking a moment to enjoy something well made.</p>
-        <p>Whether it's your first visit or your hundredth, we aim to make it feel like a destination, not just a stop.</p>
-        <a href="#about" class="btn-outline" style="margin-top:1.5rem; display:inline-block;">Learn More About Us</a>
-      </div>
-      <div class="atm-img-placeholder">
-        <img src="images/1.JPG" alt="Atmosphere / Storefront Image" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;">
-      </div>
-    </div>
-  </section>
-
-  <!-- MANIFESTO -->
-  <section id="manifesto">
-    <div class="manifesto-inner">
-      <div class="manifesto-rule"><span>Our Belief</span></div>
-      <p class="manifesto-text">
-        We believe the finest things in life aren't found by accident.
-        they're sought, curated, and savored.
-        At Tobacco Mart, we've made it our purpose to bring that standard
-        to your neighborhood, because every moment deserves
-        something worth remembering.
-      </p>
-      <p class="manifesto-sig">The Tobacco Mart Family, Urbandale Iowa</p>
-    </div>
-  </section>
-
-  <!-- STATS BAR -->
-  <section id="stats-bar">
-    <div class="stats-inner">
-      <div class="stats-cell">
-        <span class="stats-big">7<sup>days</sup></span>
-        <p class="stats-label">Always Open</p>
-        <p class="stats-sub">Every week, all year</p>
-      </div>
-      <div class="stats-cell">
-        <span class="stats-big">100<sup>+</sup></span>
-        <p class="stats-label">Products Carried</p>
-        <p class="stats-sub">And growing</p>
-      </div>
-      <div class="stats-cell">
-        <span class="stats-big">1<sup>st</sup></span>
-        <p class="stats-label">In the Neighborhood</p>
-        <p class="stats-sub">Urbandale's own</p>
-      </div>
-      <div class="stats-cell">
-        <span class="stats-big">∞</span>
-        <p class="stats-label">Happy Customers</p>
-        <p class="stats-sub">We've lost count</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAP SECTION -->
-  <section id="map-section">
-    <div class="map-container">
-      <div class="map-header">
-        <p class="section-label">Find Us On The Map</p>
-        <h2 class="section-title">Visit Tobacco Mart</h2>
-        <div class="gold-rule center"></div>
-      </div>
-      <div class="map-embed">
-        <iframe src="https://maps.google.com/maps?q=6535+Douglas+Ave+Urbandale+IA+50322&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <span class="footer-brand-name">TOBACCO MART</span>
-        <p class="footer-tagline">Tobacco Mart: Curated Spirits &amp; Cigars for Today</p>
-        <p class="footer-address">
-          6535 Douglas Ave<br>
-          Urbandale, IA 50322<br><br>
-          Mon – Fri: 7:00 AM – 10:00 PM<br>
-          Sat – Sun: 8:00 AM – 10:00 PM
-        </p>
-      </div>
-      <div>
-        <p class="footer-col-title">Navigate</p>
-        <ul class="footer-links">
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#products">Our Products</a></li>
-          <li><a href="#visit">Hours &amp; Location</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-col-title">Connect</p>
-        <ul class="footer-links">
-          <li><a href="https://www.yelp.com/map/tobacco-hut-urbandale" target="_blank">Yelp</a></li>
-          <li><a href="https://maps.google.com/?q=6535+Douglas+Ave+Urbandale+IA+50322" target="_blank">Google Maps</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Tobacco Mart, Urbandale, Iowa. All rights reserved.</p>
-      <p class="footer-disc">Must be 21+ to purchase tobacco and alcohol products.</p>
-    </div>
-  </footer>
-
-  <style>
-    /* ===== OPTIMIZED SCROLL ANIMATIONS ===== */
-    .scroll-fade-up {
-      opacity: 0;
-      transform: translateY(25px);
-      will-change: transform, opacity;
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .scroll-fade-up.animate {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .scroll-fade-in {
-      opacity: 0;
-      will-change: opacity;
-      transition: opacity 0.4s ease-out;
-    }
-    .scroll-fade-in.animate {
-      opacity: 1;
-    }
-
-    .scroll-scale {
-      opacity: 0;
-      transform: scale(0.95);
-      will-change: transform, opacity;
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .scroll-scale.animate {
-      opacity: 1;
-      transform: scale(1);
-    }
-  </style>
-
-  <script>
-    // ===== OPTIMIZED SCROLL ANIMATIONS =====
-    // Uses Intersection Observer API - zero scroll event listeners
-    // Only animates GPU-accelerated properties (transform, opacity)
-    
-    const animationConfig = {
-      threshold: [0],
-      rootMargin: '0px 0px -80px 0px' // Trigger 80px before entering viewport
-    };
-
-    // Create single observer instance (reuse for all elements)
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-          scrollObserver.unobserve(entry.target); // Stop observing once animated
+      @media (max-width: 700px) {
+        .experience-pillars {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
         }
-      });
-    }, animationConfig);
+      }
 
-    // Apply animations to elements on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      // Fade-up: Cards, pillars, stats cells
-      document.querySelectorAll(
-        '.product-card, .review-card, .pillar, .stats-cell'
-      ).forEach(el => {
-        el.classList.add('scroll-fade-up');
-        scrollObserver.observe(el);
-      });
+      /* ===== HOURS & LOCATION ===== */
+      #visit {
+        background: var(--black-soft);
+        border-top: 1px solid var(--border);
+      }
+      .visit-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+      }
+      .hours-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.5rem;
+      }
+      .hours-table tr {
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      }
+      .hours-table td {
+        padding: 0.75rem 0;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        color: rgba(240, 234, 216, 0.75);
+      }
+      .hours-table td:first-child {
+        font-weight: 500;
+        color: var(--gold);
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+      }
+      .hours-table td:last-child {
+        text-align: right;
+      }
+      .location-address {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        line-height: 1.6;
+        color: var(--off-white);
+        margin: 1.5rem 0;
+      }
+      .location-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+      .location-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-decoration: none;
+        transition: opacity 0.3s;
+      }
+      .location-link:hover {
+        opacity: 0.7;
+      }
+      .location-link::before {
+        content: "→";
+        font-size: 0.85rem;
+      }
 
-      // Scale-in: Gallery items (for visual interest)
-      document.querySelectorAll('.gallery-item').forEach(el => {
-        el.classList.add('scroll-scale');
-        scrollObserver.observe(el);
-      });
+      /* ===== REVIEWS ===== */
+      #reviews {
+        background: var(--black);
+        text-align: center;
+      }
+      .reviews-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .review-single {
+        max-width: 700px;
+        margin: 2.5rem auto;
+        text-align: left;
+      }
+      .review-card {
+        background: var(--black-card);
+        border: 1px solid var(--border);
+        padding: 3rem;
+        position: relative;
+        transition: border-color 0.3s;
+      }
+      .review-card:hover {
+        border-color: rgba(201, 168, 76, 0.5);
+      }
+      .review-card::before {
+        content: "\201C";
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 5rem;
+        color: rgba(201, 168, 76, 0.08);
+        line-height: 1;
+      }
+      .review-stars {
+        color: var(--gold);
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        margin-bottom: 1rem;
+      }
+      .review-text {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        line-height: 1.9;
+        color: rgba(240, 234, 216, 0.8);
+        margin-bottom: 1.5rem;
+      }
+      .review-author {
+        font-size: 1.1rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      .review-source {
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        color: rgba(201, 168, 76, 0.5);
+        margin-top: 0.25rem;
+      }
 
-      // Fade-in: Text sections and larger elements
-      document.querySelectorAll(
-        '.about-text, .strip-text, .atm-text, .experience-inner, .reviews-inner'
-      ).forEach(el => {
-        el.classList.add('scroll-fade-in');
-        scrollObserver.observe(el);
-      });
-    });
+      /* ===== PROMOTIONS ===== */
+      #promotions {
+        background: var(--black);
+        border-bottom: 1px solid var(--border);
+      }
+      .promotions-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .promotions-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .promotions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .promotion-card {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        min-height: 280px;
+      }
+      .promotion-card:hover {
+        transform: translateY(-4px);
+      }
 
-    // ===== NAV SCROLL EFFECT =====
-    const navbar = document.getElementById('navbar');
-    let lastScrollY = 0;
-    
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-      lastScrollY = window.scrollY;
-    }, { passive: true }); // Passive flag for better scroll performance
+      /* Variation 1: Premium Border */
+      .promotion-card.style-1 {
+        background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, transparent 100%);
+        border: 1px solid var(--gold);
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-    // ===== MOBILE MENU TOGGLE =====
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.getElementById('hamburger');
-      menu.classList.toggle('open');
-      hamburger.classList.toggle('open');
-      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-    }
-  </script>
-</body>
+      /* Variation 2: Minimal Elegant */
+      .promotion-card.style-2 {
+        background: transparent;
+        border: 1px solid var(--gold);
+        padding: 3rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* Variation 3: Accent Box */
+      .promotion-card.style-3 {
+        background: var(--black-card);
+        border: 1px solid var(--gold);
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .promo-title {
+        font-family: "Cinzel", serif;
+        font-size: 1.95rem;
+        font-weight: 600;
+        color: var(--off-white);
+        margin-bottom: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .promo-description {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        line-height: 1.7;
+        color: rgba(240, 234, 216, 0.7);
+      }
+
+      .promo-accent {
+        font-size: 1.125rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-top: auto;
+        padding-top: 1.5rem;
+      }
+
+      @media (max-width: 1000px) {
+        .promotions-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .promotions-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+
+      /* ===== GALLERY ===== */
+      #gallery {
+        background: var(--black-mid);
+        border-top: 1px solid var(--border);
+      }
+      .gallery-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .gallery-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        gap: 6px;
+      }
+      .gallery-item {
+        background: var(--black-card);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: border-color 0.3s;
+        cursor: pointer;
+      }
+      .gallery-item:hover {
+        border-color: rgba(201, 168, 76, 0.5);
+      }
+      .gallery-item:nth-child(1) {
+        grid-column: span 6;
+        aspect-ratio: 16/10;
+      }
+      .gallery-item:nth-child(2) {
+        grid-column: span 3;
+        aspect-ratio: 4/5;
+      }
+      .gallery-item:nth-child(3) {
+        grid-column: span 3;
+        aspect-ratio: 4/5;
+      }
+      .gallery-item:nth-child(4) {
+        grid-column: span 4;
+        aspect-ratio: 4/3;
+      }
+      .gallery-item:nth-child(5) {
+        grid-column: span 4;
+        aspect-ratio: 4/3;
+      }
+      .gallery-item:nth-child(6) {
+        grid-column: span 4;
+        aspect-ratio: 4/3;
+      }
+      .gallery-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(201, 168, 76, 0.3);
+        border: 1px dashed rgba(201, 168, 76, 0.15);
+        margin: 12px;
+      }
+
+      /* ===== ATMOSPHERE (vague #2) ===== */
+      #atmosphere {
+        background: var(--black-soft);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .atmosphere-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 6vw, 6rem);
+        align-items: center;
+      }
+      .atm-text p {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.15rem, 2vw, 1.4rem);
+        line-height: 1.9;
+        color: rgba(240, 234, 216, 0.75);
+        margin-bottom: 1.3rem;
+      }
+      .atm-img-placeholder {
+        width: 100%;
+        aspect-ratio: 4/3;
+        background: var(--black-card);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .atm-img-placeholder::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          315deg,
+          rgba(201, 168, 76, 0.05) 0%,
+          transparent 60%
+        );
+      }
+      .atm-img-placeholder .img-tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(201, 168, 76, 0.35);
+        border: 1px dashed rgba(201, 168, 76, 0.2);
+        padding: 0.6rem 1.2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: var(--black);
+        border-top: 1px solid var(--border);
+        padding: clamp(2.5rem, 5vw, 4rem) 5vw 1.5rem;
+      }
+      .footer-grid {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: clamp(2rem, 5vw, 4rem);
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .footer-brand-name {
+        font-family: "Cinzel", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.15em;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .footer-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        color: rgba(240, 234, 216, 0.55);
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+      }
+      .footer-address {
+        font-size: 0.78rem;
+        line-height: 1.8;
+        color: var(--text-muted);
+      }
+      .footer-col-title {
+        font-family: "Cinzel", serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .footer-links a {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+        letter-spacing: 0.05em;
+      }
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+      .footer-bottom {
+        max-width: 1300px;
+        margin: 1.5rem auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .footer-copy {
+        font-size: 0.68rem;
+        color: rgba(136, 136, 136, 0.5);
+        letter-spacing: 0.08em;
+      }
+      .footer-disc {
+        font-size: 0.65rem;
+        color: rgba(136, 136, 136, 0.35);
+        letter-spacing: 0.05em;
+      }
+
+      /* ===== MANIFESTO ===== */
+      #manifesto {
+        padding: clamp(5rem, 10vw, 9rem) 5vw;
+        background: var(--black-mid);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      #manifesto::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 80% 60% at 50% 50%,
+          rgba(201, 168, 76, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      #manifesto::after {
+        content: '"';
+        position: absolute;
+        top: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(12rem, 25vw, 22rem);
+        color: rgba(201, 168, 76, 0.04);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+      }
+      .manifesto-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .manifesto-rule {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-bottom: 3rem;
+      }
+      .manifesto-rule::before,
+      .manifesto-rule::after {
+        content: "";
+        flex: 1;
+        max-width: 80px;
+        height: 1px;
+        background: var(--gold);
+        opacity: 0.5;
+      }
+      .manifesto-rule span {
+        font-family: "Cinzel", serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .manifesto-text {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--off-white);
+        letter-spacing: 0.01em;
+      }
+      .manifesto-text em {
+        font-style: normal;
+        color: var(--gold);
+      }
+      .manifesto-sig {
+        margin-top: 2.5rem;
+        font-family: "Cinzel", serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: rgba(201, 168, 76, 0.5);
+      }
+
+      /* ===== STATS BAR ===== */
+      #stats-bar {
+        background: var(--black);
+        border-bottom: 1px solid var(--border);
+        padding: clamp(3rem, 6vw, 5rem) 5vw;
+      }
+      .stats-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--border);
+      }
+      .stats-cell {
+        background: var(--black);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .stats-cell:hover {
+        background: var(--black-card);
+      }
+      .stats-big {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+      .stats-big sup {
+        font-size: 0.45em;
+        vertical-align: super;
+        color: var(--gold-light);
+      }
+      .stats-label {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      .stats-sub {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.85rem;
+        color: rgba(201, 168, 76, 0.4);
+        margin-top: 0.3rem;
+      }
+
+      @media (max-width: 700px) {
+        .stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 400px) {
+        .stats-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===== KEYFRAMES ===== */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @keyframes floatDecoration {
+        0%,
+        100% {
+          transform: translateY(0px);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(-20px);
+          opacity: 0.95;
+        }
+      }
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 0.7;
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 0.7;
+        }
+      }
+      @keyframes rotateAccent {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ===== HERO DECORATIVE GRAPHICS ===== */
+      .hero-decorator-top-left {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        width: 80px;
+        height: 80px;
+        border: 2px solid rgba(201, 168, 76, 0.4);
+        border-right: none;
+        border-bottom: none;
+        z-index: 1;
+        animation: slideInLeft 1.2s 0.4s ease both;
+      }
+      .hero-decorator-top-left::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      .hero-decorator-top-right {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        width: 80px;
+        height: 80px;
+        border: 2px solid rgba(201, 168, 76, 0.4);
+        border-left: none;
+        border-bottom: none;
+        z-index: 1;
+        animation: slideInRight 1.2s 0.4s ease both;
+      }
+      .hero-decorator-top-right::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+        animation: pulse 2s infinite 0.3s;
+      }
+
+      .hero-accent-line {
+        position: absolute;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0.5;
+        z-index: 1;
+      }
+      .hero-accent-line-left {
+        width: 200px;
+        height: 2px;
+        left: 0;
+        top: 35%;
+        animation: slideInLeft 1.5s 0.6s ease both;
+      }
+      .hero-accent-line-right {
+        width: 200px;
+        height: 2px;
+        right: 0;
+        top: 65%;
+        animation: slideInRight 1.5s 0.6s ease both;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+
+        #about {
+          grid-template-columns: 1fr;
+        }
+        .about-img-accent {
+          display: none;
+        }
+        .about-img-placeholder {
+          aspect-ratio: 3/2;
+        }
+        .about-stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .strip-inner {
+          grid-template-columns: 1fr;
+        }
+        .strip-img-placeholder {
+          aspect-ratio: 16/9;
+        }
+
+        .visit-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .atmosphere-inner {
+          grid-template-columns: 1fr;
+        }
+        .atm-img-placeholder {
+          aspect-ratio: 16/9;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .product-card:last-child {
+          grid-column: 1 / -1;
+          max-width: 50%;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+        .product-card:last-child {
+          grid-column: 1;
+          max-width: 100%;
+        }
+      }
+
+      /* ===== MAP SECTION ===== */
+      #map-section {
+        background: var(--black);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: clamp(3rem, 6vw, 5rem) 5vw;
+      }
+      .map-container {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .map-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .map-embed {
+        width: 100%;
+        height: 500px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      }
+      .map-embed iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      @media (max-width: 900px) {
+        .map-embed {
+          height: 400px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .map-embed {
+          height: 300px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gallery-item:nth-child(1) {
+          grid-column: span 2;
+        }
+        .gallery-item:nth-child(2) {
+          grid-column: span 1;
+        }
+        .gallery-item:nth-child(3) {
+          grid-column: span 1;
+        }
+        .gallery-item:nth-child(4) {
+          grid-column: span 2;
+        }
+        .gallery-item:nth-child(5) {
+          grid-column: span 1;
+        }
+        .gallery-item:nth-child(6) {
+          grid-column: span 1;
+        }
+
+        .about-stats {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.5rem;
+        }
+        .stat-num {
+          font-size: 1.4rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .experience-pillars {
+          flex-direction: column;
+        }
+
+        #doordash {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- AGE VERIFICATION MODAL -->
+    <div class="age-verification-overlay" id="ageVerificationOverlay">
+      <div class="age-verification-modal">
+        <h2>Age Verification</h2>
+        <p class="subtitle">Are you 21 years or older?</p>
+        <p>You must be of legal age to enter this site.</p>
+        <div class="age-verification-buttons">
+          <button class="age-btn age-btn-yes" id="ageYesBtn">
+            Yes, I'm 21+
+          </button>
+          <button class="age-btn age-btn-no" id="ageNoBtn">
+            No, I'm Under 21
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCESS DENIED SECTION -->
+    <div class="access-denied-overlay" id="accessDeniedSection">
+      <div class="access-denied-container">
+        <h2>Access Denied</h2>
+        <p class="restriction-subtitle">Age Verification Required</p>
+        <div class="restriction-rule"></div>
+        <div class="restriction-message">
+          <p>
+            You must be <strong>21 years of age or older</strong> to access
+            Tobacco Mart and purchase our products.
+          </p>
+        </div>
+        <p class="restriction-text">
+          We take age verification seriously to comply with federal and state
+          laws regarding the sale of tobacco, alcohol, and related products.
+        </p>
+        <button class="try-again-btn" id="tryAgainBtn">Try Again</button>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <a href="#hero" class="nav-logo">TOBACCO MART</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#map-section">Map</a></li>
+      </ul>
+      <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="toggleMenu()">About</a>
+      <a href="#products" onclick="toggleMenu()">Products</a>
+      <a href="#visit" onclick="toggleMenu()">Visit</a>
+      <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+      <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+      <a href="#map-section" onclick="toggleMenu()">Map</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="mainContent">
+      <!-- HERO -->
+      <section id="hero">
+        <!-- Decorative Graphics -->
+        <div class="hero-decorator-top-left"></div>
+        <div class="hero-decorator-top-right"></div>
+        <div class="hero-accent-line hero-accent-line-left"></div>
+        <div class="hero-accent-line hero-accent-line-right"></div>
+
+        <div class="hero-img-placeholder">
+          <img
+            src="images/3.JPG"
+            alt="Tobacco Mart Hero"
+            style="width: 100%; height: 100%; object-fit: cover"
+          />
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="hero-eyebrow">Est. Urbandale, Iowa</p>
+          <h1 class="hero-title">
+            Where <span>Smoke</span><br />Meets <span>Spirit</span>
+          </h1>
+          <p class="hero-tagline">
+            Taste the world: Spirits, Wines &amp; Imported Cigars
+          </p>
+          <div class="hero-cta">
+            <a href="#products" class="btn-gold">Explore Selection</a>
+            <a href="#visit" class="btn-outline">Find Us</a>
+          </div>
+        </div>
+        <div class="hero-scroll">Scroll</div>
+      </section>
+
+      <!-- DOORDASH BANNER -->
+
+      <!-- ABOUT -->
+      <section>
+        <div id="about">
+          <div class="about-img">
+            <div class="about-img-placeholder">
+              <img
+                src="images/1.JPG"
+                alt="Our Story"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="about-img-accent"></div>
+          </div>
+          <div class="about-text">
+            <p class="section-label">Our Story</p>
+            <h2 class="section-title">A Family Tradition of Quality</h2>
+            <div class="gold-rule"></div>
+            <p>
+              At Tobacco Mart, we believe every moment deserves a little
+              elevation: bringing together premium tobacco, fine spirits,
+              curated wines, and imported cigars in one modern destination built
+              for those who appreciate quality and experience.
+            </p>
+            <p>
+              We carefully select everything on our shelves so you can enjoy the
+              best without the guesswork, whether you're unwinding, celebrating,
+              or discovering something new. Every sip and every puff is meant to
+              elevate your everyday.
+            </p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-num">7</span>
+                <span class="stat-label">Days a Week</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num"
+                  >7<small style="font-size: 0.7em">am</small></span
+                >
+                <span class="stat-label">Early Open</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num"
+                  >10<small style="font-size: 0.7em">pm</small></span
+                >
+                <span class="stat-label">Late Close</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROMOTIONS -->
+      <section id="promotions">
+        <div class="promotions-inner">
+          <div class="promotions-header">
+            <p class="section-label">Featured Offers</p>
+            <h2 class="section-title">Exclusive Rewards</h2>
+            <div class="gold-rule center"></div>
+          </div>
+          <div class="promotions-grid">
+            <div class="promotion-card style-1">
+              <div>
+                <h3 class="promo-title">Punch Cards</h3>
+                <p class="promo-description">
+                  Build your collection with every visit. Unlock rewards as you earn.
+                </p>
+              </div>
+              <p class="promo-accent">Earn Points</p>
+            </div>
+
+            <div class="promotion-card style-2">
+              <div>
+                <h3 class="promo-title">Multi-Pack Deals</h3>
+                <p class="promo-description">
+                  Stock up and save. Premium selections at unbeatable values.
+                </p>
+              </div>
+              <p class="promo-accent">Stock Up</p>
+            </div>
+
+            <div class="promotion-card style-3">
+              <div>
+                <h3 class="promo-title">Loyalty Program</h3>
+                <p class="promo-description">
+                  Join our community and enjoy exclusive perks, early access, and more.
+                </p>
+              </div>
+              <p class="promo-accent">Join Today</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section id="products">
+        <div class="products-inner">
+          <div class="products-header">
+            <p class="section-label">What We Carry</p>
+            <h2 class="section-title">Our Selection</h2>
+            <div class="gold-rule center"></div>
+            <p
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 1.485rem;
+                color: rgba(240, 234, 216, 0.65);
+                max-width: 500px;
+                margin: 0 auto;
+              "
+            >
+              Curated with care, from smooth spirits to world-class cigars.
+            </p>
+          </div>
+          <div class="products-grid">
+            <div class="product-card">
+              <p class="product-name">Cigarettes</p>
+              <p class="product-desc">
+                A wide variety of domestic and imported brands.
+              </p>
+            </div>
+            <div class="product-card">
+              <p class="product-name">Vapes</p>
+              <p class="product-desc">
+                Devices, pods, and accessories for every preference.
+              </p>
+            </div>
+            <div class="product-card">
+              <p class="product-name">Tobacco</p>
+              <p class="product-desc">
+                Premium loose tobacco, wraps, and pipe blends.
+              </p>
+            </div>
+            <div class="product-card">
+              <p class="product-name">Premium Cigars</p>
+              <p class="product-desc">
+                Imported selections hand-picked for the discerning palate.
+              </p>
+            </div>
+            <div class="product-card">
+              <p class="product-name">Beer</p>
+              <p class="product-desc">
+                Craft, domestic, and imported. Cold and ready.
+              </p>
+            </div>
+            <div class="product-card">
+              <p class="product-name">Wine</p>
+              <p class="product-desc">
+                A thoughtful selection for every occasion.
+              </p>
+            </div>
+            <div class="product-card">
+              <p class="product-name">Liquor</p>
+              <p class="product-desc">
+                Fine spirits, whiskeys, and more, expertly stocked.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE STRIP (image + text) -->
+      <section id="feature-strip">
+        <div class="strip-inner">
+          <div class="strip-img-placeholder">
+            <img
+              src="images/2.JPG"
+              alt="Curated for You"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div class="strip-text">
+            <p class="section-label">Curated for You</p>
+            <h2 class="section-title">More Than a Convenience Store</h2>
+            <div class="gold-rule"></div>
+            <p>
+              We've redefined what a neighborhood shop can be: a space where
+              quality meets convenience, and every visit feels intentional. Stop
+              in for a quick grab or take your time exploring what's new on our
+              shelves.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE (vague section #1) -->
+      <section id="experience">
+        <div class="experience-inner">
+          <p class="section-label" style="text-align: center">
+            The Tobacco Mart Way
+          </p>
+          <h2 class="section-title" style="text-align: center">
+            Elevate Every Moment
+          </h2>
+          <div class="gold-rule center"></div>
+          <p>
+            There's a reason our regulars keep coming back: it's not just what
+            we carry, it's how we carry it. Quality, selection, and a welcoming
+            atmosphere that makes every visit worth the trip.
+          </p>
+          <div class="experience-pillars">
+            <div class="pillar">
+              <span class="pillar-num">01</span>
+              <p class="pillar-title">Curated Selection</p>
+              <p class="pillar-body">
+                Every product is chosen with purpose: no filler, no compromise.
+              </p>
+            </div>
+            <div class="pillar">
+              <span class="pillar-num">02</span>
+              <p class="pillar-title">Local Roots</p>
+              <p class="pillar-body">
+                Family-owned and Urbandale proud, serving our community with
+                care.
+              </p>
+            </div>
+            <div class="pillar">
+              <span class="pillar-num">03</span>
+              <p class="pillar-title">Open Daily</p>
+              <p class="pillar-body">
+                Early mornings to late evenings: we're here when you need us.
+              </p>
+            </div>
+            <div class="pillar">
+              <span class="pillar-num">04</span>
+              <p class="pillar-title">Real Knowledge</p>
+              <p class="pillar-body">
+                Ask us anything: we know our shelves inside and out.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOURS & VISIT -->
+      <section id="visit">
+        <div class="visit-inner">
+          <div>
+            <p class="section-label">Come See Us</p>
+            <h2 class="section-title">Hours &amp; Location</h2>
+            <div class="gold-rule"></div>
+            <table class="hours-table">
+              <tr>
+                <td>Mon – Fri</td>
+                <td>7:00 AM – 10:00 PM</td>
+              </tr>
+              <tr>
+                <td>Saturday</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+              <tr>
+                <td>Sunday</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <p class="section-label">Find Us</p>
+            <h2 class="section-title">Urbandale, Iowa</h2>
+            <div class="gold-rule"></div>
+            <p class="location-address">
+              6535 Douglas Ave<br />
+              Urbandale, IA 50322
+            </p>
+            <div class="location-links">
+              <a
+                href="https://www.yelp.com/map/tobacco-hut-urbandale"
+                target="_blank"
+                class="location-link"
+                >View on Yelp</a
+              >
+              <a
+                href="https://maps.google.com/?q=6535+Douglas+Ave+Urbandale+IA+50322"
+                target="_blank"
+                class="location-link"
+                >Open in Google Maps</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews">
+        <div class="reviews-inner">
+          <p class="section-label">What People Are Saying</p>
+          <h2 class="section-title">Customer Spotlight</h2>
+          <div class="gold-rule center"></div>
+          <div class="review-single">
+            <div class="review-card">
+              <p class="review-stars">★★★★★</p>
+              <p class="review-text">
+                The guys and gals are very nice and helpful. Easy to get in and
+                out quickly. Prices are good.
+              </p>
+              <p class="review-author">Michelle B.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery">
+        <div class="gallery-inner">
+          <div class="gallery-header">
+            <p class="section-label">Take a Look Inside</p>
+            <h2 class="section-title">Gallery</h2>
+            <div class="gold-rule center"></div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img
+                src="images/3.JPG"
+                alt="Tobacco Mart"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="images/4.JPG"
+                alt="Tobacco Mart"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="images/5.JPG"
+                alt="Tobacco Mart"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="images/6.JPG"
+                alt="Tobacco Mart"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="images/7.JPG"
+                alt="Tobacco Mart"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="images/8.JPG"
+                alt="Tobacco Mart"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATMOSPHERE (vague section #2) -->
+      <section id="atmosphere">
+        <div class="atmosphere-inner">
+          <div class="atm-text">
+            <p class="section-label">The Feeling</p>
+            <h2 class="section-title">An Atmosphere Worth Returning To</h2>
+            <div class="gold-rule"></div>
+            <p>
+              From the moment you walk in, Tobacco Mart feels different. It's a
+              place built around appreciation: for craftsmanship, for flavor,
+              for taking a moment to enjoy something well made.
+            </p>
+            <p>
+              Whether it's your first visit or your hundredth, we aim to make it
+              feel like a destination, not just a stop.
+            </p>
+            <a
+              href="#about"
+              class="btn-outline"
+              style="margin-top: 1.5rem; display: inline-block"
+              >Learn More About Us</a
+            >
+          </div>
+          <div class="atm-img-placeholder">
+            <img
+              src="images/1.JPG"
+              alt="Atmosphere / Storefront Image"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+                z-index: 2;
+              "
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- MANIFESTO -->
+      <section id="manifesto">
+        <div class="manifesto-inner">
+          <div class="manifesto-rule"><span>Our Belief</span></div>
+          <p class="manifesto-text">
+            We believe the finest things in life aren't found by accident.
+            they're sought, curated, and savored. At Tobacco Mart, we've made it
+            our purpose to bring that standard to your neighborhood, because
+            every moment deserves something worth remembering.
+          </p>
+          <p class="manifesto-sig">The Tobacco Mart Family, Urbandale Iowa</p>
+        </div>
+      </section>
+
+      <!-- STATS BAR -->
+      <section id="stats-bar">
+        <div class="stats-inner">
+          <div class="stats-cell">
+            <span class="stats-big">7<sup>days</sup></span>
+            <p class="stats-label">Always Open</p>
+            <p class="stats-sub">Every week, all year</p>
+          </div>
+          <div class="stats-cell">
+            <span class="stats-big">100<sup>+</sup></span>
+            <p class="stats-label">Products Carried</p>
+            <p class="stats-sub">And growing</p>
+          </div>
+          <div class="stats-cell">
+            <span class="stats-big">1<sup>st</sup></span>
+            <p class="stats-label">In the Neighborhood</p>
+            <p class="stats-sub">Urbandale's own</p>
+          </div>
+          <div class="stats-cell">
+            <span class="stats-big">∞</span>
+            <p class="stats-label">Happy Customers</p>
+            <p class="stats-sub">We've lost count</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAP SECTION -->
+      <section id="map-section">
+        <div class="map-container">
+          <div class="map-header">
+            <p class="section-label">Find Us On The Map</p>
+            <h2 class="section-title">Visit Tobacco Mart</h2>
+            <div class="gold-rule center"></div>
+          </div>
+          <div class="map-embed">
+            <iframe
+              src="https://maps.google.com/maps?q=6535+Douglas+Ave+Urbandale+IA+50322&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-grid">
+          <div>
+            <span class="footer-brand-name">TOBACCO MART</span>
+            <p class="footer-tagline">
+              Tobacco Mart: Curated Spirits &amp; Cigars for Today
+            </p>
+            <p class="footer-address">
+              6535 Douglas Ave<br />
+              Urbandale, IA 50322<br /><br />
+              Mon – Fri: 7:00 AM – 10:00 PM<br />
+              Sat – Sun: 8:00 AM – 10:00 PM
+            </p>
+          </div>
+          <div>
+            <p class="footer-col-title">Navigate</p>
+            <ul class="footer-links">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#products">Our Products</a></li>
+              <li><a href="#visit">Hours &amp; Location</a></li>
+              <li><a href="#reviews">Reviews</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-col-title">Connect</p>
+            <ul class="footer-links">
+              <li>
+                <a
+                  href="https://www.yelp.com/map/tobacco-hut-urbandale"
+                  target="_blank"
+                  >Yelp</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://maps.google.com/?q=6535+Douglas+Ave+Urbandale+IA+50322"
+                  target="_blank"
+                  >Google Maps</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">
+            © 2025 Tobacco Mart, Urbandale, Iowa. All rights reserved.
+          </p>
+          <p class="footer-disc">
+            Must be 21+ to purchase tobacco and alcohol products.
+          </p>
+        </div>
+      </footer>
+
+      <style>
+        /* ===== OPTIMIZED SCROLL ANIMATIONS ===== */
+        .scroll-fade-up {
+          opacity: 0;
+          transform: translateY(25px);
+          will-change: transform, opacity;
+          transition:
+            opacity 0.5s ease-out,
+            transform 0.5s ease-out;
+        }
+        .scroll-fade-up.animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .scroll-fade-in {
+          opacity: 0;
+          will-change: opacity;
+          transition: opacity 0.4s ease-out;
+        }
+        .scroll-fade-in.animate {
+          opacity: 1;
+        }
+
+        .scroll-scale {
+          opacity: 0;
+          transform: scale(0.95);
+          will-change: transform, opacity;
+          transition:
+            opacity 0.5s ease-out,
+            transform 0.5s ease-out;
+        }
+        .scroll-scale.animate {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        /* ===== AGE VERIFICATION MODAL ===== */
+        .age-verification-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.92);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          backdrop-filter: blur(5px);
+          opacity: 0;
+          visibility: hidden;
+          transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+        }
+        .age-verification-overlay.active {
+          opacity: 1;
+          visibility: visible;
+        }
+        .age-verification-modal {
+          background: linear-gradient(135deg, #1a1a1a 0%, #161616 100%);
+          border: 1px solid rgba(201, 168, 76, 0.4);
+          padding: 3rem 2.5rem;
+          text-align: center;
+          max-width: 450px;
+          width: 90%;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+          animation: modalSlideUp 0.4s ease;
+        }
+        @keyframes modalSlideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .age-verification-modal h2 {
+          font-family: "Cinzel", serif;
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--gold);
+          margin-bottom: 1.5rem;
+          letter-spacing: 0.05em;
+        }
+        .age-verification-modal p {
+          font-family: "Raleway", sans-serif;
+          font-size: 1rem;
+          color: rgba(240, 234, 216, 0.85);
+          margin-bottom: 0.8rem;
+          line-height: 1.6;
+        }
+        .age-verification-modal .subtitle {
+          font-family: "Cormorant Garamond", serif;
+          font-size: 1.1rem;
+          color: var(--gold);
+          margin-bottom: 2rem;
+          font-style: italic;
+        }
+        .age-verification-buttons {
+          display: flex;
+          gap: 1.5rem;
+          margin-top: 2.5rem;
+          justify-content: center;
+        }
+        .age-btn {
+          padding: 0.9rem 2rem;
+          font-family: "Raleway", sans-serif;
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border-radius: 2px;
+        }
+        .age-btn-yes {
+          background: var(--gold);
+          color: var(--black);
+        }
+        .age-btn-yes:hover {
+          background: var(--gold-light);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+        }
+        .age-btn-no {
+          background: transparent;
+          color: var(--gold);
+          border: 1.5px solid rgba(201, 168, 76, 0.6);
+        }
+        .age-btn-no:hover {
+          border-color: var(--gold);
+          background: rgba(201, 168, 76, 0.08);
+        }
+
+        /* ===== ACCESS DENIED SECTION ===== */
+        .access-denied-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            135deg,
+            var(--black) 0%,
+            var(--black-mid) 100%
+          );
+          display: none;
+          align-items: center;
+          justify-content: center;
+          z-index: 9998;
+          padding: 2rem;
+        }
+        .access-denied-container {
+          text-align: center;
+          max-width: 600px;
+          width: 100%;
+          background: rgba(10, 10, 10, 0.6);
+          padding: 3rem 2rem;
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          backdrop-filter: blur(10px);
+          animation: modalSlideUp 0.4s ease;
+        }
+        .restriction-icon {
+          font-size: 4rem;
+          margin-bottom: 1.5rem;
+          display: block;
+          animation: pulse 2s infinite;
+        }
+        .access-denied-container h2 {
+          font-family: "Cinzel", serif;
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--off-white);
+          margin-bottom: 1rem;
+          letter-spacing: 0.05em;
+        }
+        .restriction-subtitle {
+          font-family: "Cormorant Garamond", serif;
+          font-size: 1.3rem;
+          color: var(--gold);
+          margin-bottom: 1.5rem;
+          font-style: italic;
+        }
+        .restriction-rule {
+          width: 60px;
+          height: 1px;
+          background: var(--gold);
+          margin: 1.5rem auto 2rem;
+        }
+        .restriction-message {
+          background: rgba(201, 168, 76, 0.05);
+          border-left: 3px solid var(--gold);
+          padding: 1.5rem;
+          margin: 1.5rem 0;
+          border-radius: 2px;
+        }
+        .restriction-message p {
+          font-family: "Raleway", sans-serif;
+          font-size: 1rem;
+          color: rgba(240, 234, 216, 0.85);
+          line-height: 1.8;
+          margin: 0;
+        }
+        .restriction-text {
+          font-family: "Raleway", sans-serif;
+          font-size: 1rem;
+          color: rgba(240, 234, 216, 0.75);
+          line-height: 1.8;
+          margin: 1rem 0;
+        }
+        .try-again-btn {
+          display: inline-block;
+          margin-top: 2rem;
+          padding: 0.85rem 2.4rem;
+          border: 1px solid rgba(201, 168, 76, 0.6);
+          color: var(--gold);
+          font-family: "Raleway", sans-serif;
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          background: transparent;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border-radius: 2px;
+        }
+        .try-again-btn:hover {
+          border-color: var(--gold);
+          background: rgba(201, 168, 76, 0.08);
+          transform: translateY(-2px);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        #mainContent {
+          display: block;
+        }
+      </style>
+
+      <script>
+        // ===== AGE VERIFICATION =====
+        function initAgeVerification() {
+          // For testing: Clear localStorage to always show the modal on fresh page load
+          // Comment out this line after testing if you want to persist the verification
+          localStorage.removeItem("ageVerified");
+
+          const ageOverlay = document.getElementById("ageVerificationOverlay");
+          const ageYesBtn = document.getElementById("ageYesBtn");
+          const ageNoBtn = document.getElementById("ageNoBtn");
+          const mainContent = document.getElementById("mainContent");
+          const deniedSection = document.getElementById("accessDeniedSection");
+          const tryAgainBtn = document.getElementById("tryAgainBtn");
+
+          // Verify all elements exist
+          if (!ageOverlay || !ageYesBtn || !ageNoBtn) {
+            console.error("Age verification elements not found");
+            return;
+          }
+
+          // Check if user has already verified
+          const ageVerified = localStorage.getItem("ageVerified");
+
+          if (!ageVerified) {
+            // Show modal immediately
+            ageOverlay.classList.add("active");
+            ageOverlay.style.display = "flex";
+          } else {
+            // Hide the modal and enable content if already verified
+            ageOverlay.classList.remove("active");
+            ageOverlay.style.display = "none";
+            if (mainContent) {
+              mainContent.style.display = "block";
+            }
+          }
+
+          // Yes button - dismiss modal and verify age
+          ageYesBtn.addEventListener("click", () => {
+            localStorage.setItem("ageVerified", "true");
+            ageOverlay.classList.remove("active");
+            ageOverlay.style.display = "none";
+            if (mainContent) {
+              mainContent.style.display = "block";
+            }
+          });
+
+          // No button - show access denied section
+          ageNoBtn.addEventListener("click", () => {
+            ageOverlay.classList.remove("active");
+            ageOverlay.style.display = "none";
+            if (mainContent) {
+              mainContent.style.display = "none";
+            }
+            if (deniedSection) {
+              deniedSection.style.display = "flex";
+            }
+          });
+
+          // Try again button
+          if (tryAgainBtn) {
+            tryAgainBtn.addEventListener("click", () => {
+              if (deniedSection) {
+                deniedSection.style.display = "none";
+              }
+              if (mainContent) {
+                mainContent.style.display = "block";
+              }
+              ageOverlay.classList.add("active");
+              ageOverlay.style.display = "flex";
+            });
+          }
+        }
+
+        // ===== OPTIMIZED SCROLL ANIMATIONS =====
+        // Uses Intersection Observer API - zero scroll event listeners
+        // Only animates GPU-accelerated properties (transform, opacity)
+
+        const animationConfig = {
+          threshold: [0],
+          rootMargin: "0px 0px -80px 0px", // Trigger 80px before entering viewport
+        };
+
+        // Create single observer instance (reuse for all elements)
+        const scrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate");
+              scrollObserver.unobserve(entry.target); // Stop observing once animated
+            }
+          });
+        }, animationConfig);
+
+        // Apply animations to elements on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          // Initialize age verification
+          initAgeVerification();
+
+          // Fade-up: Cards, pillars, stats cells
+          document
+            .querySelectorAll(
+              ".product-card, .review-card, .pillar, .stats-cell",
+            )
+            .forEach((el) => {
+              el.classList.add("scroll-fade-up");
+              scrollObserver.observe(el);
+            });
+
+          // Scale-in: Gallery items (for visual interest)
+          document.querySelectorAll(".gallery-item").forEach((el) => {
+            el.classList.add("scroll-scale");
+            scrollObserver.observe(el);
+          });
+
+          // Fade-in: Text sections and larger elements
+          document
+            .querySelectorAll(
+              ".about-text, .strip-text, .atm-text, .experience-inner, .reviews-inner",
+            )
+            .forEach((el) => {
+              el.classList.add("scroll-fade-in");
+              scrollObserver.observe(el);
+            });
+        });
+
+        // ===== NAV SCROLL EFFECT =====
+        const navbar = document.getElementById("navbar");
+        let lastScrollY = 0;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            navbar.classList.toggle("scrolled", window.scrollY > 60);
+            lastScrollY = window.scrollY;
+          },
+          { passive: true },
+        ); // Passive flag for better scroll performance
+
+        // ===== MOBILE MENU TOGGLE =====
+        function toggleMenu() {
+          const menu = document.getElementById("mobileMenu");
+          const hamburger = document.getElementById("hamburger");
+          menu.classList.toggle("open");
+          hamburger.classList.toggle("open");
+          document.body.style.overflow = menu.classList.contains("open")
+            ? "hidden"
+            : "";
+        }
+      </script>
+    </div>
+  </body>
 </html>
