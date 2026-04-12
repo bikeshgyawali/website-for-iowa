@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -18,7 +17,7 @@
       content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     />
     <meta name="author" content="Tobacco Mart" />
-    
+
     <title>
       Tobacco Mart – Premium Cigars, Spirits & Wine in Urbandale, IA
     </title>
@@ -100,7 +99,6 @@
       }
     </script>
 
-    
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -1677,6 +1675,7 @@
     <!-- AGE VERIFICATION MODAL -->
     <div class="age-verification-overlay" id="ageVerificationOverlay">
       <div class="age-verification-modal">
+        <p class="brand-title">Tobacco Mart</p>
         <h2>Age Verification</h2>
         <p class="subtitle">Are you 21 years or older?</p>
         <p>You must be of legal age to enter this site.</p>
@@ -2387,6 +2386,15 @@
           margin-bottom: 1.5rem;
           letter-spacing: 0.05em;
         }
+        .age-verification-modal .brand-title {
+          font-family: "Cinzel", serif;
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--gold);
+          margin-bottom: 0.5rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
         .age-verification-modal p {
           font-family: "Raleway", sans-serif;
           font-size: 1rem;
@@ -2395,11 +2403,12 @@
           line-height: 1.6;
         }
         .age-verification-modal .subtitle {
-          font-family: "Cormorant Garamond", serif;
-          font-size: 1.1rem;
-          color: var(--gold);
-          margin-bottom: 2rem;
-          font-style: italic;
+          font-family: "Raleway", sans-serif;
+          font-size: 2rem;
+          color: rgba(240, 234, 216, 0.85);
+          margin-bottom: 1.5rem;
+          line-height: 1.2;
+          font-style: normal;
         }
         .age-verification-buttons {
           display: flex;
